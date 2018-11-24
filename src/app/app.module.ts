@@ -8,6 +8,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContentComponent } from './content/content.component';
 import {FormsModule} from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {AppRoutingModule} from './app.routing.module';
 
 @NgModule({
   declarations: [
@@ -15,10 +17,11 @@ import {FormsModule} from '@angular/forms';
     ProduitComponent,
     NavbarComponent,
     SidebarComponent,
-    ContentComponent
+    ContentComponent,
+    DashboardComponent
   ],
   imports: [
-    BrowserModule, FormsModule
+    BrowserModule, AppRoutingModule, FormsModule
   ],
   providers: [ProduitService],
   bootstrap: [AppComponent]
