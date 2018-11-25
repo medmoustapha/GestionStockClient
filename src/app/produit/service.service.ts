@@ -19,4 +19,7 @@ export class ProduitService {
     return this.produits;
 
   }
+  addProduit(f) {
+    this.produits.push(f);
+  }
 }

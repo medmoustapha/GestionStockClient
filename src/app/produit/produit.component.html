@@ -1,8 +1,56 @@
-<h3>Liste des produits</h3>
-<p></p>
-<ul>
-  <li *ngFor="let prod of produits">
-    ref:{{ prod.id }},quantité{{prod.quantite}},prix{{prod.prixUnit}}
-  </li>
+<div class="panel panel-success col-md-6">
+  <div class="panel-heading">List des produit </div>
+  <div class="panel-body">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>REF</th> <th>QUANTITE</th> <th>PRIX unitaire</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let prod of produits">
+        <td>{{prod.ref}}</td>
+        <td>{{prod.quantite}}</td>
+        <td>{{prod.prixUnit}}</td>
+        <td>
+          <button (click)="edit(prod.ref)" class="btn btn-default btn-xs btn-default"><span class="glyphicon glyphicon-edit">EDIT</span></button>
+          <button class="btn btn-primary" (click)="delete(prod.ref)"><span class="glyphicon glyphicon-trash"></span></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="panel panel-success col-md-6">
+  <div class="panel-heading bg-info">Ajouter Produit</div>
+  <div class="panel-body">
+    <form  #form="ngForm" (ngSubmit)="addProduit(form.value)">
+      <div class="form-group col-md-8">
+        <label class="col-sm-4 control-label" >Reference:</label>
+        <input class="form-control"name="ref" maxlength="30" type="text" [(ngModel)]="produit.ref" #ref="ngModel">
+        <!--<div class="alert alert-danger" *ngIf="produitForm.controls['id'].invalid &&
+                                               produitForm.controls['id'].touched || produitForm.controls['id'].dirty" >
+          Réference  est obligatoire!
+        </div>-->
+      </div>
 
-</ul>
+      <div class="form-group col-md-8">
+        <label class="col-sm-4 control-label" >Quantite:</label>
+        <input class="form-control" name="quantite" [(ngModel)]="produit.quantite" #quantite="ngModel">
+      </div>
+
+      <div class="form-group col-md-8">
+        <label class="col-sm-4 control-label" >Prix:</label>
+        <input type="number" class="form-control" name="prixUnit" [(ngModel)]="produit.prixUnit" #prixUni="ngModel">
+      </div>
+      <div class="form-group col-md-8">
+        <div class="col-md-offset-6 col-sm-8">
+          <button class="btn btn-success" [disabled]="!form.valid">SAVE</button>
+          <button class="btn btn-info" (click)="goBack()">CANCEL</button>
+
+          <div class="alert alert-success alert-dismissible" id="msg1" style="display:none;"></div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
