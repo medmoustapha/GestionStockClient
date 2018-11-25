@@ -1,6 +1,8 @@
-export   class Produit {
-  public ref: string;
-  public quantite: number;
-  public prixUnit: number;
+import {ProduitService} from '../produit/service.service';
+import {FormBuilder} from '@angular/forms';
 
+export   class Produit {
+  ref: string;
+  quantite: number;
+  prixUnit: number;
 }

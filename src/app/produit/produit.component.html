@@ -8,6 +8,7 @@
       </tr>
       </thead>
       <tbody>
+
       <tr *ngFor="let prod of produits">
         <td>{{prod.ref}}</td>
         <td>{{prod.quantite}}</td>
@@ -26,21 +27,17 @@
     <form  #form="ngForm" (ngSubmit)="addProduit(form.value)">
       <div class="form-group col-md-8">
         <label class="col-sm-4 control-label" >Reference:</label>
-        <input class="form-control"name="ref" maxlength="30" type="text" [(ngModel)]="produit.ref" #ref="ngModel">
-        <!--<div class="alert alert-danger" *ngIf="produitForm.controls['id'].invalid &&
-                                               produitForm.controls['id'].touched || produitForm.controls['id'].dirty" >
-          Réference  est obligatoire!
-        </div>-->
+        <input class="form-control"name="ref" id="ref" maxlength="30" type="text" [(ngModel)]="produit.ref" #ref="ngModel">
       </div>
 
       <div class="form-group col-md-8">
-        <label class="col-sm-4 control-label" >Quantite:</label>
-        <input class="form-control" name="quantite" [(ngModel)]="produit.quantite" #quantite="ngModel">
+        <label class="col-sm-4 control-label" for="quantite" >Quantite:</label>
+        <input type="number" class="form-control" name="quantite" id="quantite" [(ngModel)]="produit.quantite" #quantite="ngModel">
       </div>
 
       <div class="form-group col-md-8">
         <label class="col-sm-4 control-label" >Prix:</label>
-        <input type="number" class="form-control" name="prixUnit" [(ngModel)]="produit.prixUnit" #prixUni="ngModel">
+        <input type="number" class="form-control" id="prixUnit" name="prixUnit" [(ngModel)]="produit.prixUnit" #prixUni="ngModel">
       </div>
       <div class="form-group col-md-8">
         <div class="col-md-offset-6 col-sm-8">

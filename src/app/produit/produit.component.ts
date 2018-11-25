@@ -11,22 +11,18 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class ProduitComponent implements OnInit {
   produits: Produit[];
   produit = new Produit();
-  // produitForm: FormGroup;
   constructor(private produitService: ProduitService, private fb: FormBuilder) {
-    /*this.produitForm = this.fb.group({
-      ref: ['', Validators.required],
-      quantite: [''],
-      prixUnit: ''
-    });*/
+
   }
 
   ngOnInit() {
+
     this.produit = null;
     this.produits = this.produitService.getProduit();
   }
   addProduit(f) {
-  console.log(f);
-  this.produitService.addProduit(f);
+   console.log(f);
+   this.produitService.addProduit(f);
    this.ngOnInit();
   }
   edit(id) {
