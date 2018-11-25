@@ -1,6 +1,6 @@
 export   class Produit {
+  public ref: string;
+  public quantite: number;
+  public prixUnit: number;
 
-  constructor(public ref: string, public quantite?:  number, public prixUnit?: number) {
-
-  }
 }
