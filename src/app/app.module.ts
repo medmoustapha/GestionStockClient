@@ -7,7 +7,7 @@ import {ProduitService} from './produit/service.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContentComponent } from './content/content.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app.routing.module';
 
@@ -21,7 +21,7 @@ import {AppRoutingModule} from './app.routing.module';
     DashboardComponent
   ],
   imports: [
-    BrowserModule, AppRoutingModule, FormsModule
+    BrowserModule, AppRoutingModule, FormsModule,ReactiveFormsModule
   ],
   providers: [ProduitService],
   bootstrap: [AppComponent]

@@ -1,8 +1,54 @@
-<h3>Liste des produits</h3>
-<p></p>
-<ul>
-  <li *ngFor="let prod of produits">
-    ref:{{ prod.id }},quantité{{prod.quantite}},prix{{prod.prixUnit}}
-  </li>
+<div class="container">
+  <div class="row">
+    <div class="panel panel-success col-md-8">
+      <div class="panel-heading"><b>List des Produits </b></div>
+      <div class="panel-body">
 
-</ul>
+        <table *ngIf="produits" class="table table-striped">
+          <thead>
+          <tr>
+            <th>REF</th> <th>QUANTITE</th> <th>PRIX</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let prod of produits">
+            <td>{{prod.id}}</td>
+            <td>{{prod.quantite}}</td>
+            <td>{{prod.prixUnit}}</td>
+            <td> <button class="btn btn-primary" (click)="delete(prod.id)"><span class="glyphicon glyphicon-trash"></span></button></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="panel panel-default col-md-4">
+      <div class="panel-heading"><b>Ajouter en formation </b></div>
+      <div class="panel-body">
+
+        <form class="" #addProduit="ngForm"  (ngSubmit)="add(addProduit.value)">
+
+
+          <div class="form-group col-md-8">
+            <label class="col-sm-4 control-label" for="nom">Name:</label>
+            <input class="form-control" name="nom" required maxlength="30" type="text" [(ngModel)]="model.nom" #nom="ngModel">
+          </div>
+
+          <div class="form-group col-md-8">
+            <label class="col-sm-4 control-label" for="duree">Duree:</label>
+            <input type="number" class="form-control" name="duree" required max="100" min="1" maxlength="2" [ngModel]="model.duree" #duree="ngModel" >
+          </div>
+          <div class="form-group col-md-8">
+            <div class="col-md-offset-6 col-sm-8">
+              <button class="btn btn-success" [disabled]="!addFormation.valid">SAVE</button>
+              <button class="btn btn-info" (click)="goBack()" [disabled]="!addFormation.valid">CANCEL</button>
+
+              <div class="alert alert-success alert-dismissible" id="msg1" style="display:none;"></div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
