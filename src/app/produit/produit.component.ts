@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Produit} from '../shared/produit';
-import {ProduitService} from './service.service';
 
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ProduitService} from './produit.service.service';
 
 
 
@@ -13,39 +13,65 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class ProduitComponent implements OnInit {
   produits: Produit[];
-
+  operation= 'add';
   produit = new Produit();
   produitForm: FormGroup;
 
   constructor(private produitService: ProduitService, private fb: FormBuilder) {
+   this.creatForm();
+  }
+  creatForm() {
     this.produitForm = this.fb.group({
       ref: ['', Validators.required],
       quantite: '',
-      prix: ''
+      prixUnitaire: ''
 
     });
   }
 
-
-
+  initProduit() {
+    this.produit = new Produit();
+    this.creatForm();
+  }
   ngOnInit() {
+    this.initProduit();
+    this.looadProduit();
+  }
+  looadProduit() {
+    this.produitService.getProduits().subscribe(data => {
+      this.produits = data;
+    },
+      error1 => { console.log('An error was occured'); });
+  }
+  addProduit() {
+    const  p = this.produitForm.value;
+    this.produitService.addProduit(p).subscribe(data => {
+      this.initProduit();
+      this.looadProduit();
+    });
 
-    this.produit = null;
-    this.produits = this.produitService.getProduit();
   }
-  addProduit(f) {
-   console.log(f);
-   this.produitService.addProduit(f);
-   this.ngOnInit();
-  }
-  edit(id) {
 
+  edit() {
+    const  p = this.produitForm.value;
+    this.produitService.updateProduit(this.produit).subscribe(data => {
+      this.operation = '';
+      this.initProduit();
+    });
   }
-  delete(id) {
+
+  delete() {
+     this.produitService.deleteProduit(this.produit.id).subscribe(data => {
+         this.produit= new Produit();
+         this.looadProduit();
+       },
+       error1 => { console.log('Produit non supprimemr'); });
 
   }
   goBack() {
-    this.ngOnInit();
+    this.operation = '';
+
   }
+
 
 }

@@ -5,7 +5,7 @@
     <table class="table table-hover">
       <thead>
       <tr>
-        <th>REF</th> <th>QUANTITE</th> <th>PRIX unitaire</th>
+        <th>REF</th> <th>QUANTITE</th> <th>PRIX</th><th><button class="btn btn-primary" (click)="operation='add';initProduit();">ADD NEW</button></th>
       </tr>
       </thead>
       <tbody>
@@ -13,22 +13,23 @@
       <tr *ngFor="let prod of produits">
         <td>{{prod.ref}}</td>
         <td>{{prod.quantite}}</td>
-        <td>{{prod.prixUnit}}</td>
+        <td>{{prod.prixUnitaire}}</td>
         <td>
-          <button (click)="edit(prod.ref)" class="btn btn-default btn-xs btn-default"><span class="glyphicon glyphicon-edit">EDIT</span></button>
-          <button class="btn btn-primary" (click)="delete(prod.ref)"><span class="glyphicon glyphicon-trash"></span></button></td>
+          <button  (click)="operation='edit'; produit = prod" class="btn btn-default btn-xs btn-default"><span class="glyphicon glyphicon-edit">EDIT</span></button>
+          <button class="btn btn-danger" (click)="delete(); produit = prod" ><span class="glyphicon glyphicon-trash"></span></button></td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
-<div class="panel panel-success col-md-6">
-  <div class="panel-heading bg-info">Ajouter Produit</div>
+<div class="panel panel-success col-md-6" *ngIf="operation">
+  <div class="panel-heading bg-info">{{ operation == 'add' ? 'AJOUTER PRODUIT' :
+                                        operation == 'edit' ? 'MODIFIER PRODUIT' : ''}}</div>
   <div class="panel-body">
-    <form [formGroup]="produitForm" #form="ngForm" (ngSubmit)="addProduit(form.value)">
+    <form [formGroup]="produitForm">
       <div class="form-group col-md-8">
         <label class="col-sm-4 control-label" >Reference:</label>
-        <input class="form-control" formControlName="ref" type="text">
+        <input class="form-control" formControlName="ref" type="text" [(ngModel)]="produit.ref">
       </div>
       <div class="alert alert-danger" *ngIf="produitForm.controls['ref'].invalid &&
                        (produitForm.controls['ref'].touched || produitForm.controls['ref'].dirty)" >
@@ -36,16 +37,16 @@
       </div>
       <div class="form-group col-md-8">
         <label class="col-sm-4 control-label" >Quantite:</label>
-        <input type="number" class="form-control" formControlName="quantite">
+        <input type="number" class="form-control" formControlName="quantite" [(ngModel)]="produit.quantite">
       </div>
 
       <div class="form-group col-md-8">
         <label class="col-sm-4 control-label" >Prix:</label>
-        <input type="number" class="form-control" formControlName="prix">
+        <input type="number" class="form-control" formControlName="prixUnitaire" [(ngModel)]="produit.prixUnitaire">
       </div>
       <div class="form-group col-md-8">
         <div class="col-md-offset-6 col-sm-8">
-          <button class="btn btn-success" [disabled]="produitForm.pristine|| produitForm.invalid">SAVE</button>
+          <button class="btn btn-success" (click)="operation=='add' ? addProduit(): edit();initProduit()" [disabled]="produitForm.pristine|| produitForm.invalid">{{operation=='add' ? 'SAVE': 'UPDATE'}}</button>
           <button class="btn btn-info" (click)="goBack()">CANCEL</button>
 
           <div class="alert alert-success alert-dismissible" id="msg1" style="display:none;"></div>

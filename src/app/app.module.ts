@@ -10,6 +10,7 @@ import { ContentComponent } from './content/content.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app.routing.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import {AppRoutingModule} from './app.routing.module';
     DashboardComponent
   ],
   imports: [
-    BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule
+    BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule
 
   ],
   providers: [ProduitService],
