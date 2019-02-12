@@ -22,6 +22,7 @@ import {AppRoutingModule} from './app.routing.module';
   ],
   imports: [
     BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule
+
   ],
   providers: [ProduitService],
   bootstrap: [AppComponent]
