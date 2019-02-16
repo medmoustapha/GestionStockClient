@@ -13,7 +13,7 @@ import {ProduitService} from './produit.service.service';
 })
 export class ProduitComponent implements OnInit {
   produits: Produit[];
-  operation= 'add';
+  operation= '';
   produit = new Produit();
   produitForm: FormGroup;
 
@@ -30,6 +30,7 @@ export class ProduitComponent implements OnInit {
   }
 
   initProduit() {
+
     this.produit = new Produit();
     this.creatForm();
   }
@@ -48,6 +49,7 @@ export class ProduitComponent implements OnInit {
     this.produitService.addProduit(p).subscribe(data => {
       this.initProduit();
       this.looadProduit();
+      this.operation = '';
     });
 
   }
@@ -60,9 +62,9 @@ export class ProduitComponent implements OnInit {
     });
   }
 
-  delete() {
-     this.produitService.deleteProduit(this.produit.id).subscribe(data => {
-         this.produit= new Produit();
+  delete(id) {
+     this.produitService.deleteProduit(id).subscribe(data => {
+         console.log('Produit supprimemr');
          this.looadProduit();
        },
        error1 => { console.log('Produit non supprimemr'); });

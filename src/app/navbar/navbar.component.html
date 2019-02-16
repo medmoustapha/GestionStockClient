@@ -1,3 +1,6 @@
+<div class="pull-right">
+   <button class="btn btn-danger btn-sm" (click)="logOut()">Log Out</button>
+</div>
 <div>
   <a  data-toggle="collapse" (click)="afficherSideBar()"><i class="fa fa-bars" aria-hidden="true"></i></a>
   <hr/>
@@ -6,10 +9,10 @@
     <!-- Links -->
     <ul class="navbar-nav ">
       <li class="nav-item">
-        <button routerLink="dashboard" class="btn btn-primary">DASHBOARD</button>
+        <button [routerLink]="[{outlets: { contentOutlet: 'dashboard'}}]" class="btn btn-primary">DASHBOARD</button>
       </li>
       <li class="nav-item">
-        <button routerLink="product" class="btn btn-primary">PRODUCT</button>
+        <button [routerLink]="[{outlets: { contentOutlet: 'product'}}]" class="btn btn-primary">PRODUCT</button>
       </li>
       <li class="nav-item">
         <button routerLink="content" class="btn btn-primary">CONTENT</button>

@@ -1,0 +1,11 @@
+<div class="row body" >
+  <div class="col-md-2 col-sm-2" *ngIf="showHideSideBar">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="col-md-10 col-sm-8">
+    <app-navbar [showSideBar]="showHideSideBar"
+                (showSideBarChange)="onShowSideBarShage($event)"></app-navbar>
+    <app-content></app-content>
+
+  </div>
+</div>

@@ -2,11 +2,20 @@ import { NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ProduitComponent} from './produit/produit.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {LoginComponent} from './login/login.component';
+import {HomeComponent} from './home/home.component';
 
 export const appRoutes: Routes = [
+
+  {path: 'login', component: LoginComponent},
+  {path: 'home', component: HomeComponent,
+    children: [
+      {path: 'product', component: ProduitComponent, outlet: 'contentOutlet'},
+      {path: 'dashboard', component: DashboardComponent, outlet: 'contentOutlet'},
+    ]},
   {path: 'product', component: ProduitComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'}
+
+  {path: '', redirectTo: '/home', pathMatch: 'full'}
 ]
 @NgModule({
 imports: [

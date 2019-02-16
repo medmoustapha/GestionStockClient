@@ -16,7 +16,7 @@
         <td>{{prod.prixUnitaire}}</td>
         <td>
           <button  (click)="operation='edit'; produit = prod" class="btn btn-default btn-xs btn-default"><span class="glyphicon glyphicon-edit">EDIT</span></button>
-          <button class="btn btn-danger" (click)="delete(); produit = prod" ><span class="glyphicon glyphicon-trash"></span></button></td>
+          <button class="btn btn-danger" (click)="delete(prod.id)"><span class="glyphicon glyphicon-trash"></span></button></td>
         </tr>
       </tbody>
     </table>

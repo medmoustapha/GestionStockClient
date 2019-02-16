@@ -11,6 +11,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app.routing.module';
 import {HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import {AppService} from './app.service';
 
 @NgModule({
   declarations: [
@@ -19,13 +22,15 @@ import {HttpClientModule} from '@angular/common/http';
     NavbarComponent,
     SidebarComponent,
     ContentComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule
 
   ],
-  providers: [ProduitService],
+  providers: [ProduitService, AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,35 @@
+<div class="add">
+<div class="panel panel-info col-md-10 offset4">
+  <div class="panel-heading bg-info">LOGIN</div>
+  <div class="panel-body">
+    <form [formGroup]="loginform" (submit)="login()">
+      <div class="form-group col-md-8">
+        <label class="col-sm-4 control-label" >User Name:</label>
+        <input class="form-control" formControlName="username" name="username" id="username" type="text" [(ngModel)]="credentials.username">
+      </div>
+      <div class="alert alert-danger" *ngIf="loginform.controls['username'].invalid &&
+                       (loginform.controls['username'].touched || loginform.controls['username'].dirty)" >
+        Login est obligatoire!
+      </div>
+      <div class="form-group col-md-8">
+        <label class="col-sm-4 control-label" >Password:</label>
+        <input type="password" class="form-control" formControlName="password" name="password" id="password" [(ngModel)]="credentials.password">
+      </div>
+      <div class="alert alert-danger" *ngIf="loginform.controls['password'].invalid &&
+                       (loginform.controls['password'].touched || loginform.controls['password'].dirty)" >
+        Password est obligatoire!
+      </div>
+
+      <div class="form-group col-md-8">
+        <div class="col-md-offset-6 col-sm-8">
+          <button class="btn btn-success">Sign In</button>
+          <button class="btn btn-info" (click)="goBack()">CANCEL</button>
+
+          <div class="alert alert-success alert-dismissible" id="msg1" style="display:none;"></div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+</div>
