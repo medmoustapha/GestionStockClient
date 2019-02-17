@@ -9,13 +9,10 @@ import {Router} from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'GestionStockClient';
-  showHideSideBar = false;
+
 
   constructor(private appServie: AppService, private  router: Router) {
 
-  }
-  onShowSideBarShage(showHideSideBar) {
-    this.showHideSideBar = showHideSideBar;
   }
   ngOnInit() {
     if (!this.appServie.authenticated) {

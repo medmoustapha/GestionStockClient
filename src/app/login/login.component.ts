@@ -11,8 +11,8 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
     loginform: FormGroup;
     credentials= {
-                    usename: '',
-                    passwored: ''
+                    username: '',
+                    password: ''
                  };
 
   constructor(private  fb: FormBuilder, private  appServive: AppService, private router: Router) { }
@@ -20,16 +20,20 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginform
       = this.fb.group({
-      username: ['', Validators.required, Validators.minLength(4)],
-      password: ['', Validators.required, Validators.minLength(3)]
+      username: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(3)])]
     });
   }
   login() {
+    console.log(this.credentials);
      this.appServive.authenticate(this.credentials, () => {
-       this.router.navigateByUrl('/home/(contentOutlet:product)');
+       this.router.navigateByUrl('/home');
      });
   }
   goBack( ) {
-
+     this.credentials= {
+       username: '',
+       password: ''
+     };
   }
 }

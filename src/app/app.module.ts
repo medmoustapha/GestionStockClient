@@ -10,10 +10,13 @@ import { ContentComponent } from './content/content.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app.routing.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import {AppService} from './app.service';
+import {XhrInterceptor} from './xhr.interceptor';
+import {CookieService} from 'ngx-cookie-service';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +33,11 @@ import {AppService} from './app.service';
     BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule
 
   ],
-  providers: [ProduitService, AppService],
+  providers: [ProduitService,
+              AppService,
+             {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},
+              CookieService
+              ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

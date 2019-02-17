@@ -1,4 +1,9 @@
 <div class="add">
+  <div class="col-lg-7">
+    <div class="imgcontainer">
+      <img src="https://www.7boutik.com/images/cache/IMAGE_STOCK.500.jpg" alt="Avatar" class="avatar">
+    </div>
+  </div>
 <div class="panel panel-info col-md-10 offset4">
   <div class="panel-heading bg-info">LOGIN</div>
   <div class="panel-body">
@@ -22,7 +27,7 @@
 
       <div class="form-group col-md-8">
         <div class="col-md-offset-6 col-sm-8">
-          <button class="btn btn-success">Sign In</button>
+          <button class="btn btn-success" [disabled]="loginform.invalid">Sign In</button>
           <button class="btn btn-info" (click)="goBack()">CANCEL</button>
 
           <div class="alert alert-success alert-dismissible" id="msg1" style="display:none;"></div>
