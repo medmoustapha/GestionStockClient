@@ -11,7 +11,7 @@ export class AppService {
   constructor(private http: HttpClient, private cookieServive: CookieService) { }
   authenticate(credentials, callback ) {
     if (credentials) {
-      const token = btoa(credentials.username + ':' + credentials.passwored);
+      const token = btoa(credentials.username + ':' + credentials.password);
        this.cookieServive.set('token', token);
         /*const headers =  new HttpHeaders({
           authorization: 'Basic' + token
@@ -19,6 +19,7 @@ export class AppService {
       this.http.get(API_URLS.USER_URL).subscribe(response => {
         if (response && response['name']) {
           console.log(response);
+
           this.authenticated = true;
         } else {
           this.authenticated = false;

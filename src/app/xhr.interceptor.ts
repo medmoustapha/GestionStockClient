@@ -14,8 +14,9 @@ export class XhrInterceptor implements HttpInterceptor{
     const token = this.cookieService.get('token');
 
     const  xhr = req.clone({
-      headers: req.headers.set('authorization','Basic ${token}')
+      headers: req.headers.set('Authorization','Basic '+token)
     });
+    console.log('Basic'+token);
     return next.handle(xhr) ;
   }
 

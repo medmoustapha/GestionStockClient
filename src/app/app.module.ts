@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import {AppService} from './app.service';
 import {XhrInterceptor} from './xhr.interceptor';
 import {CookieService} from 'ngx-cookie-service';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {CookieService} from 'ngx-cookie-service';
     ContentComponent,
     DashboardComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule

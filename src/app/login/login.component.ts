@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
     loginform: FormGroup;
     credentials= {
                     username: '',
-                    password: ''
+      password: ''
                  };
 
   constructor(private  fb: FormBuilder, private  appServive: AppService, private router: Router) { }
